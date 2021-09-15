@@ -1,0 +1,6 @@
+New Component : ng generate component xyz
+Material : ng add @angular/material
+PWA Support : ng add @angular/pwa
+Add Dependency : ng add _____
+Rung And Waht Test : ng test
+Build For Production : ng build
