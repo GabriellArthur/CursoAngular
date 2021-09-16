@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tentativas.component.css']
 })
 export class TentativasComponent implements OnInit {
+  public coracaoVazio:string = '/assets/coracao_vazio.png' //Property Binding
+  public coracaoCheio:string = '/assets/coracao_cheio.png'
+  
 
   constructor() { }
 
