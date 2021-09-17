@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Frase } from '../shared/frase.model'
 import { FRASES } from './frases-mock'
 @Component({
@@ -11,8 +11,18 @@ export class PainelComponent implements OnInit { //Event Binding
   public instrucao: string = "Traduza a frase:"
   public resposta: string = ""
 
+  public rodada:number = 0
+  public rodadaFrase: Frase
+
+  public progresso:number = 0
+
+  public tentativas: number = 3
+
+  @Output() public encerrarJogo: EventEmitter<string> = new EventEmitter()
+
   constructor() {
-    console.log(this.frases)
+    this.atualizaRodada()
+    this.rodadaFrase = this.frases[this.rodada]
   }
 
   ngOnInit(): void {
@@ -20,10 +30,26 @@ export class PainelComponent implements OnInit { //Event Binding
 
   public atualizaResposta(resposta: Event): void {
     this.resposta = (<HTMLInputElement>resposta.target).value//Pegando o value de uma propriedade html
-    console.log(this.resposta)
+  }
+
+  public atualizaRodada():void{
+    this.rodadaFrase = this.frases[this.rodada]
+    this.resposta=""
   }
 
   public verificarResposta():void{
-    console.log('Verificar Repostas: ',this.resposta)
+    if(this.rodadaFrase.frasePtBr == this.resposta){
+      this.rodada++
+      if(this.rodada === 4){
+        this.encerrarJogo.emit("Vitoria")
+      }
+      this.atualizaRodada()
+      this.progresso = this.progresso + (100/this.frases.length)
+    }else{
+      this.tentativas--
+      if(this.tentativas === -1){
+        this.encerrarJogo.emit("Derrota")
+      }
+    }
   }
 }

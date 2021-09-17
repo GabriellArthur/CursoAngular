@@ -16,13 +16,5 @@ export const FRASES: Array<Frase> = [
   {
     fraseEng:"Be heroes of your own stories",
     frasePtBr:"Sejam heróis de suas próprias histórias"
-  },
-  {
-    fraseEng:"I don’t need your approval to be me",
-    frasePtBr:"Não preciso da sua aprovação para ser eu"
-  },
-  {
-    fraseEng:"Dream without fear, love without limits",
-    frasePtBr:"Sonhe sem medo, ame sem limites"
   }
 ]
